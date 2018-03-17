@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="{% static 'js/main.js' %}"></script>
+    <link rel="shortcut icon" href="{%  static 'favicon.ico' %}">
+    <link rel='stylesheet' href="{% static 'styles/main.css' %}"></link>
+    <link rel="manifest" href="{% static 'manifests/main.json' %}">
+
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

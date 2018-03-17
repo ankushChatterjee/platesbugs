@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %} Edit Issue:#{{issue.pk}} {% endblock %}
+{% block content %}
+<div id="header">Edit Issue:#{{issue.pk}}<a id="logout" href="/logout">logout</a><a class="hlinks" href="/">home</a></div>
+  <div class="holder">
+    <form method="post" class="login-form" action="/issue/edit/{{issue.pk}}/">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{
+  "short_name": "PlatesBugs",
+  "name": "Issue reporting platform for Plates",
+  "start_url": "/",
+  "background_color": "#FFFFFF",
+  "display":"standalone",
+  "orientaion":"potrait",
+  "theme_color": "#4db6ac"
+}

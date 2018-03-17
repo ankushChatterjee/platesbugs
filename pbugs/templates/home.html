@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}PlatesBugs{% endblock %}
+
+{% block content %}
+    <div id="header">Plates Bugs <a class="hlinks" href="/logout">logout</a></div>  
+    <div id="issuefeed">
+        {% if issues %}
+            <ul id="issuelist">
+                {% for i in issues %}
+                <a href="/issue/{{ i.pk }}">
+                    <li id="issueitem">
+                        <div id="card">
+                            <span id="issue_title">[Issue:#{{i.pk}}]:{{ i.title }}</span>
+                            <span id="issue_createtime">{{ i.create_time }} by {{ i.reporter.user.username }}</span>
+                            <div id="status-holder">
+                                <div id="issue_kind" class="issue_status">
+                                    <span class="issue-status-label">Kind</span>
+                                    <div class="icon-holder">
+                                        <i class="material-icons" style="font-size:0.9em;">
+                                           {% ifequal i.kind "UA" %} 
+                                             cancel
+                                            {% endifequal %}
+                                            {% ifequal i.kind "ENHANCEMENT" %} 
+                                             build
+                                            {% endifequal %}
+                                            {% ifequal i.kind "BUG" %} 
+                                             bug_report
+                                            {% endifequal %}
+                                        </i>
+                                    </div>
+                                    <span class="issue-status-text">{{ i.get_kind_display }}</span>
+                                </div>
+                                <div id="issue_platform" class="issue_status">
+                                    <span class="issue-status-label">Platform</span>
+                                    <div class="icon-holder">
+                                        <i class="material-icons" style="font-size:0.9em;">
+                                            {% ifequal i.platform "WEB" %} 
+                                             http
+                                            {% endifequal %}
+                                            {% ifequal i.platform "ANDROID" %} 
+                                             android
+                                            {% endifequal %}
+                                            {% ifequal i.platform "PLATESBUGS" %} 
+                                             error
+                                            {% endifequal %}    
+                                        </i>
+                                    </div>
+                                    <span class="issue-status-text">{{ i.get_platform_display }}</span>
+                                 </div>
+                                 <div id="issue-stage" class="issue_status">
+                                    <span class="issue-status-label">Stage</span>
+                                    <div class="icon-holder">
+                                        <i class="material-icons" style="font-size:0.9em;">
+                                            {% ifequal i.stage "NOT_STARTED" %} 
+                                             watch_later
+                                            {% endifequal %}
+                                            {% ifequal i.stage "DEV" %} 
+                                             code
+                                            {% endifequal %}
+                                            {% ifequal i.stage "DONE" %} 
+                                             done
+                                            {% endifequal %}    
+                                        </i>
+                                    </div>
+                                    <span class="issue-status-text">{{i.get_stage_display}}<cpan>
+                                 </div>
+                                 <div id="issue-crt" class="issue_status"> 
+                                    <span class="issue-status-label">Criticality</span>
+                                    <div class="icon-holder">
+                                        <i class="material-icons" style="font-size:0.9em;">
+                                            {% ifequal i.criticality "HIGH" %} 
+                                             filter_3
+                                            {% endifequal %}
+                                            {% ifequal i.criticality "MEDIUM" %} 
+                                             filter_2
+                                            {% endifequal %}
+                                            {% ifequal i.criticality "LOW" %} 
+                                             filter_1
+                                            {% endifequal %}
+                                            {% ifequal i.criticality "ND" %}
+                                            cancel
+                                            {% endifequal %}       
+                                        </i>
+                                    </div>
+                                    <span class="issue-status-text">{{ i.get_criticality_display }}</span>
+                                 </div>
+                            </div>
+                        </div>
+                    </li>
+                    </a>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <span id="empty">No Bugs</span>
+        {% endif %}
+    <div>
+    <div class="pagination">
+    <span class="step-links">
+        {% if issues.has_previous %}
+            <a href="?page={{ issues.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ issues.number }} of {{ issues.paginator.num_pages }}.
+        </span>
+
+        {% if issues.has_next %}
+            <a href="?page={{ issues.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+    </div>
+    <a href="/add">
+        <div id="add_button"><i class="material-icons" style="font-size:3em;">add</i></div>
+    </a>
+{% endblock %}

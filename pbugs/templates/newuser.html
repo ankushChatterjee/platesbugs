@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %} Change Password {% endblock %}
+{% block content %}
+  <div id="header">Welcome to PlatesBugs</div>
+    <div class="holder">
+      <ul><li>{{ error }}</li></ul>
+    <form method="post" class="login-form" action="/validate-password/">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Change Password</button>
+    </form>
+  </div>
+{% endblock %}

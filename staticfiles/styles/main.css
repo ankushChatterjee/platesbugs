@@ -1,0 +1,246 @@
+body
+{
+    margin: 0;
+    padding: 0;
+}
+#holder
+{
+    margin:auto;
+    height:100%;
+    width: 100%;
+    background: whitesmoke;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center; 
+    
+}
+body
+{
+    background:#E0F2F1;
+}
+#header
+{
+    background:#4da984;
+    color:white;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    margin-bottom:4px;
+    font-size:1.8em;
+    -webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+    box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+    position:fixed;
+    width: 100%;
+    top:0;
+    z-index: 3;
+
+}
+.login-form
+{
+    font-family: 'Raleway', sans-serif; 
+}
+.login-form input
+{
+    border-radius:10px;
+    padding: 7px;
+    width:100%;
+}
+.login-form textarea
+{
+    border-radius:10px;
+    padding: 7px;
+    width:100%;
+}
+.login-form select
+{
+    background:#82ceaf;
+    color:white;
+    padding:4px;
+    border-radius:3px;
+}
+.login-form button
+{
+    border-radius:10px;
+    background: #4da984;
+    color:white;
+    border:none;
+    padding: 9px;
+    width: 100%;
+    cursor: pointer;  
+}
+ul
+{
+    list-style: none;
+    color:#E91E63;
+    
+}
+#logout
+{
+    float:right;
+    position: relative;
+    text-decoration: none;
+    font-size:0.5em;
+    padding: 0.5em;
+    color:white;
+}
+#logout:hover
+{
+    color:#00897B;
+}
+#issuefeed
+{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    margin:10px;
+    flex-direction: column;
+    -webkit-box-direction: column;
+    margin: 8px;
+    align-items: center;
+}
+#issuelist
+{
+    width:60%;
+    list-style: none;
+    margin-top: 50px;
+
+}
+#issueitem
+{
+  background:#FAFAFA;
+  font-family: 'Roboto', sans-serif;
+  color:black;
+  margin-bottom: 20px;
+  width: 90%;
+  height: 200px;
+  padding:10px;
+  border-radius:2px;
+-webkit-box-shadow: 0px 1px 0.5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 1px 0.5px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.75);
+}
+
+#issueitem:hover
+{
+  cursor:pointer;
+  background:#EEEEEE;
+}
+
+#issueitem:active
+{
+  transform:translateY(1px);
+-webkit-box-shadow: 0px 0.5px 0.5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0.5px 0.5px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 1px 0.5px 0px rgba(0,0,0,0.75);
+}
+#issue_title
+{
+    display:inline-block;
+    width: 100%;
+    margin:5px;
+    color:#4db6ac;
+    font-size: 1.5em;
+    flex-grow: 1;
+}
+#issue_desc
+{
+    display:inline-block;
+    width: 100%;
+    margin:5px;
+    color:#82ceaf;
+    height:45%;
+    overflow: hidden;  
+}
+#issue_crt
+{
+    margin:5px;
+    background:#F50057;
+    border-radius:2px;
+    padding: 3px;
+    color:white;
+}
+#issue_createtime
+{
+    margin:3px;
+    border-radius:2px;
+    padding: 3px;
+    color:#4da984;
+    font-size: 0.75em;
+    flex-grow: 1;
+}
+#card
+{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+}
+#status-holder
+{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    flex-grow: 2;
+    overflow-x: scroll;
+    flex-direction:row; 
+}
+.issue_status
+{
+     flex-grow:1; 
+     border-radius: 4px;
+     background:#4DB6AC;
+     display:block;
+     height: 90px;
+     margin: 3px;
+     display: flex;
+     flex-direction:column;
+     justify-content: center;
+     align-items: center; 
+     padding:4px;
+}
+.issue-status-label
+{
+    color:white;
+    font-size: 0.7em;
+}
+.icon-holder
+{
+    flex-grow:2;
+    width: 100%;
+    color: #00897B;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+}
+.issue-status-text
+{
+    font-size: 0.8em;
+    color:whitesmoke;
+}
+#add_button
+{
+    position: fixed;
+    bottom:10px;
+    right:10px;
+    background:#00897B;
+    color:white;
+    border-radius: 100%;
+    -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.75);
+}
+#add_button:hover
+{
+    background:#26A69A;
+}
+@media screen and (max-width:770px) {
+    .login-form
+    {
+        width: 90%;
+    }
+    #issuelist{
+        width: 90%;
+    }
+}

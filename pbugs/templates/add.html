@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Add issue{% endblock %}
+{% block content %}
+  <div id="header">Add Issue<a class="hlinks" href="/">home</a></div>
+  <div class="holder">
+    <form method="post" class="login-form" action="/add/">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Post</button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}Issue:#{{issue.pk}}{% endblock %}
+{% block content %}
+    <div id="header">Plates Bugs[Issue:#{{issue.pk}}]<a class="hlinks" href="/">home</a></div>
+    <div class="holder">
+        <div class="issue-box">
+            {% if request.user.reporter.is_admin %}
+                <a id="edit" href="/issue/edit/{{issue.pk}}"><i class="material-icons">mode_edit</i></a>
+            {% endif %}
+            <span id="issue_title">{{ issue.title }}</span>
+                            <span id="issue_createtime">{{ issue.create_time }} by {{ issue.reporter.user.username }}</span>
+                            <div id="status-holder">
+                                <div id="issue_kind" class="issue_status">
+                                    <span class="issue-status-label">Kind</span>
+                                    <div class="icon-holder">
+                                        <i class="material-icons" style="font-size:0.9em;">
+                                           {% ifequal issue.kind "UA" %} 
+                                             cancel
+                                            {% endifequal %}
+                                            {% ifequal issue.kind "ENHANCEMENT" %} 
+                                             build
+                                            {% endifequal %}
+                                            {% ifequal issue.kind "BUG" %} 
+                                             bug_report
+                                            {% endifequal %}
+                                        </i>
+                                    </div>
+                                    <span class="issue-status-text">{{ issue.get_kind_display }}</span>
+                                </div>
+                                <div id="issue_platform" class="issue_status">
+                                    <span class="issue-status-label">Platform</span>
+                                    <div class="icon-holder">
+                                        <i class="material-icons" style="font-size:0.9em;">
+                                            {% ifequal issue.platform "WEB" %} 
+                                             http
+                                            {% endifequal %}
+                                            {% ifequal issue.platform "ANDROID" %} 
+                                             android
+                                            {% endifequal %}
+                                            {% ifequal issue.platform "PLATESBUGS" %} 
+                                             error
+                                            {% endifequal %}    
+                                        </i>
+                                    </div>
+                                    <span class="issue-status-text">{{ issue.get_platform_display }}</span>
+                                 </div>
+                                 <div id="issue-stage" class="issue_status">
+                                    <span class="issue-status-label">Stage</span>
+                                    <div class="icon-holder">
+                                        <i class="material-icons" style="font-size:0.9em;">
+                                            {% ifequal issue.stage "NOT_STARTED" %} 
+                                             watch_later
+                                            {% endifequal %}
+                                            {% ifequal issue.stage "DEV" %} 
+                                             code
+                                            {% endifequal %}
+                                            {% ifequal issue.stage "DONE" %} 
+                                             done
+                                            {% endifequal %}    
+                                        </i>
+                                    </div>
+                                    <span class="issue-status-text">{{issue.get_stage_display}}<cpan>
+                                 </div>
+                                 <div id="issue-crt" class="issue_status"> 
+                                    <span class="issue-status-label">Criticality</span>
+                                    <div class="icon-holder">
+                                        <i class="material-icons" style="font-size:0.9em;">
+                                            {% ifequal issue.criticality "HIGH" %} 
+                                             filter_3
+                                            {% endifequal %}
+                                            {% ifequal issue.criticality "MEDIUM" %} 
+                                             filter_2
+                                            {% endifequal %}
+                                            {% ifequal issue.criticality "LOW" %} 
+                                             filter_1
+                                            {% endifequal %}
+                                            {% ifequal issue.criticality "ND" %}
+                                            cancel
+                                            {% endifequal %}       
+                                        </i>
+                                    </div>
+                                    <span class="issue-status-text">{{ issue.get_criticality_display }}</span>
+                                 </div>
+                               </div>
+                               <hr>
+                               <div id="issue-desc">{{issue.description|linebreaks}}</div>
+                               <hr>
+                               <span id="comments-title">Comments</span>
+                               <div id="comment-box">
+                                       <form method="post" class="comment-form" action="/issue/{{issue.pk}}/">
+                                            {% csrf_token %}
+                                            {{ form.as_p }}
+                                            <button type="submit" id="comment-button">Comment</button>
+                                        </form>
+                                </div>
+                               {%if issue.comment_set.all %}
+                                    <ul id="comment-list">
+                                            {% for comment in issue.comment_set.all %}
+                                                <li id="comment">
+                                                    <span id="comment-reporter">{{comment.reporter.user.username}}</span>
+                                                    <span id="comment-time">{{comment.comment_time}}</span>
+                                                    <span id="comment-text">{{comment.text|linebreaks}}</span>
+                                                </li>
+                                            {% endfor %}
+                                {% else %}
+                                    <span class="empty">No Comments</span>
+                                {% endif %}
+                                    </ul>
+                               </div>
+{% endblock %}
